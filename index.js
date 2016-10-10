@@ -1,13 +1,10 @@
-var webdriverio = require('webdriverio');
-var options = { desiredCapabilities: { browserName: 'chrome' } };
-var client = webdriverio.remote(options);
+const webdriverio = require('webdriverio');
+const options = {desiredCapabilities: {browserName: 'chrome'}}
+const client = webdriverio.remote(options);
+
 client
   .init()
-  .url('https://duckduckgo.com/')
-  .setValue('#search_form_input_homepage', 'WebdriverIO')
-  .click('#search_button_homepage')
-  .getTitle().then(function(title) {
-  console.log('Title is: ' + title);
-  // outputs: "Title is: WebdriverIO (Software) at DuckDuckGo"
-})
+  .url('http://www.eastbay.com/product/model:249030/sku:AQ7651/' +
+    'adidas-2015-crazylight-boost-primeknit-mens/andrew-wiggins/blue/white/')
+  .click('#pdp_size_select')
   .end();
