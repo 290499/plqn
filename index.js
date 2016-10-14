@@ -9,10 +9,16 @@ describe('buy some yeezys', function () {
     browser.click('#add_to_cart');
     browser.click('#header_cart_link');
     browser.click('#cart_checkout_button');
+
     _checkout();
     _payment();
+
+    browser.waitForExist('#orderSubmit')
     browser.waitForEnabled('#orderSubmit');
+    //browser.pause(1000);
+    //browser.waitForVisible('#orderSubmit');
     //browser.click('#orderSubmit') //Uncomment this to finalize the whole payment process
+    browser.pause(30000);
   });
 });
 
@@ -33,14 +39,14 @@ function _checkout () {
   browser.setValue('#shipPostalCode', options.shipping.zipCode);
   browser.setValue('#shipHomePhone', options.phoneNumber);
 
-  browser.click('#shipPaneContinue')
-  browser.pause(30000);
-  browser.waitForEnabled('#shipMethodPaneContinue');
-  browser.click('#shipMethodPaneContinue');
-  browser.pause(30000);
+  browser.pause(500);
+  browser.click('#shipPaneContinue');
+  browser.waitForVisible('[data-btnname="checkout_shippingMethodContinue"]');
+  browser.click('[data-btnname="checkout_shippingMethodContinue"]');
 }
 
 function _payment () {
+  browser.pause(500);
   browser.setValue('#CardNumber', options.payment.number);
   browser.setValue('#CardExpireDateMM', options.payment.expiration);
   browser.setValue('#CardCCV', options.payment.csc);
