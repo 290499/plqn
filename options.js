@@ -22,6 +22,6 @@ module.exports = {
   payment: {
     number: '',
     expiration: '', // Formatted with just four consecutive numbers. eg if your expiration is 10/17 just put 1017
-    csc: ''
+    csc: '' // this is that code on the front or back of your card
   }
 };
