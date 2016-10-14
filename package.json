@@ -1,6 +1,6 @@
 {
   "name": "yeezysneak",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "cop those yeezy's",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,9 @@
   "author": "Brant Stuns",
   "license": "ISC",
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-webdriver": "^2.0.2",
+    "wdio-jasmine-framework": "^0.2.6",
     "wdio-selenium-standalone-service": "0.0.7",
     "webdriverio": "^4.2.16"
   }
