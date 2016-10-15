@@ -11,12 +11,12 @@ describe('buy some yeezys', function () {
     browser.url(options.url);
 
     browser.waitUntil(function () {
-      console.log(moment().format('hh:mm:ss:SS').yellow + ' (⌐■_■) '.green
-        + 'timer visibility is currently : '.black
-        + browser.getAttribute('#pdp_timer', 'style').magenta);
+      // console.log(moment().format('hh:mm:ss:SS').yellow + ' (⌐■_■) '.green
+      //   + 'add to cart button visibility is currently: '.white
+      //   + browser.getAttribute('.add_section', 'style').magenta);
 
-      return browser.getAttribute('#pdp_timer', 'style').includes('display: none');
-    }, 3000000, 'Never saw the countdown finish!', 10);
+      return !browser.getAttribute('.add_section', 'style').includes('display: none');
+    }, 3000000, 'Never saw the countdown finish!', 5);
 
     browser.click('#pdp_size_select');
     browser.waitForVisible(`a[data-value*="${size}"]`);
@@ -40,6 +40,7 @@ describe('buy some yeezys', function () {
 function _checkout () {
   browser.waitForExist('#billPaneShipToBillingAddress');
   browser.click('#billPaneShipToBillingAddress');
+  browser.waitForVisible('#billFirstName');
   browser.setValue('#billFirstName', options.firstName);
   browser.setValue('#billLastName', options.lastName);
   browser.setValue('#billAddress1', options.billing.addressLine1);
@@ -47,6 +48,7 @@ function _checkout () {
   browser.setValue('#billHomePhone', options.phoneNumber);
   browser.setValue('#billEmailAddress', options.email);
 
+  browser.waitForVisible('#shipFirstName');
   browser.setValue('#shipFirstName', options.firstName);
   browser.setValue('#shipLastName', options.lastName);
   browser.setValue('#shipAddress1', options.shipping.addressLine1);
@@ -62,6 +64,7 @@ function _checkout () {
 
 function _payment () {
   browser.pause(500);
+  browser.waitForVisible('#CardNumber');
   browser.setValue('#CardNumber', options.payment.number);
   browser.setValue('#CardExpireDateMM', options.payment.expiration);
   browser.setValue('#CardCCV', options.payment.csc);
