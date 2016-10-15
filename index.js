@@ -1,10 +1,25 @@
 const options = require('./options');
+const moment = require('moment');
+const colors = require('colors');
 
 describe('buy some yeezys', function () {
   it('buy em all', function () {
-    let size = options.size.length < 2 ? options.size + '.0' : options.size;
+    let size = (options.size.length < 2 || options.size === '10')
+      ? options.size + '.0'
+      : options.size;
+
     browser.url(options.url);
+
+    browser.waitUntil(function () {
+      console.log(moment().format('hh:mm:ss:SS').yellow + ' (⌐■_■) '.green
+        + 'timer visibility is currently : '.black
+        + browser.getAttribute('#pdp_timer', 'style').magenta);
+
+      return browser.getAttribute('#pdp_timer', 'style').includes('display: none');
+    }, 3000000, 'Never saw the countdown finish!', 10);
+
     browser.click('#pdp_size_select');
+    browser.waitForVisible(`a[data-value*="${size}"]`);
     browser.click(`a[data-value*="${size}"]`);
     browser.click('#add_to_cart');
     browser.click('#header_cart_link');
