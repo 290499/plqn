@@ -3,6 +3,10 @@
   "version": "1.2.0",
   "description": "cop those yeezy's",
   "main": "index.js",
+  "engines": {
+    "node": "^6.9.1",
+    "npm": "^3.10.10"
+  },
   "scripts": {
     "start": "node index.js"
   },

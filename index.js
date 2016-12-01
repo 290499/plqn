@@ -1,3 +1,4 @@
+'use strict';
 const options = require('./options');
 const moment = require('moment');
 const colors = require('colors');
